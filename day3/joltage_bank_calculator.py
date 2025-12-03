@@ -23,6 +23,23 @@ def find_largest_two_numbers(number: int):
     
     return int(str(biggest_first_number)+str(biggest_second_number))
 
+
+def find_biggest_number(number_as_string):
+    biggest_number = 0
+    for i in range(0, len(number_as_string)):
+        if int(number_as_string[i]) > biggest_number:
+            biggest_number = int(number_as_string[i])
+        if biggest_number == 9:
+            break
+    return biggest_number
+
+def find_largest_twelve_number(number:int):
+    number_as_string = str(number)
+
+    biggest_number_as_string = ""
+
+    
+    
 number_total = 0
 
 for number in input_list:

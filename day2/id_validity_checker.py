@@ -1,3 +1,4 @@
+
 from dataclasses import dataclass
 
 @dataclass
@@ -30,4 +31,18 @@ for id in id_list:
     for i in range(id.start, id.stop):
         invalid_ids_sum += split_id_in_half(i)
 
-print(invalid_ids_sum)
+invalid_ids_sum_sequence = 0
+
+def split_id_in_sequence(id: int) -> int:
+    id_string = str(id)
+
+    res = id_string in (id_string + id_string)[1:-1]
+    if res: 
+        return id
+    else:
+        return 0
+
+for id in id_list:
+    for i in range(id.start, id.stop):
+        invalid_ids_sum_sequence += split_id_in_sequence(i)
+print(invalid_ids_sum_sequence)

@@ -12,7 +12,7 @@ class Ingredient():
 
 
 
-with open("input.txt", "r") as f:
+with open("input_example.txt", "r") as f:
     input_list = f.readlines()
 
 
@@ -41,8 +41,33 @@ for ingredient in ingredients:
             ingredient.fresh = True
 
 
+
+
 fresh_counter = 0
 for ingredient in ingredients:
     fresh_counter += 1 if ingredient.fresh else 0
 
-print(fresh_counter)
+sorted_id_ranges = sorted(ids_ranges, key=lambda x: x.start)
+
+total_fresh_counter = 0
+
+range_highest_stop = 0
+for range_ in sorted_id_ranges:
+
+    if range_highest_stop < range_.start:
+        range_highest_stop = range_.stop + 1
+    else:
+
+        print(f"start: {range_.start}, range_highest_stop: {range_highest_stop}")
+        range_.start = range_highest_stop
+        range_highest_stop = range_.stop + 1
+
+
+for range_ in sorted_id_ranges:
+    additive_counter = range_.stop + 1 - range_.start
+    if additive_counter >= 0:
+        total_fresh_counter += additive_counter
+    print(f"{range_}{total_fresh_counter}")
+
+print(total_fresh_counter)
+
